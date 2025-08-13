@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Animais</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Animais</h1>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="clientes.html">Clientes</a>
+            <a href="agendamentos.html">Agendamentos</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="formAnimal">
+            <label for="nomeAnimal">Nome do Animal:</label>
+            <input type="text" id="nomeAnimal" required>
+
+            <label for="tipoAnimal">Tipo:</label>
+            <input type="text" id="tipoAnimal" required>
+
+            <label for="raca">Raça:</label>
+            <input type="text" id="raca" required>
+
+            <label for="idCliente">ID do Dono:</label>
+            <input type="number" id="idCliente" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <h3>Lista de Animais</h3>
+        <table id="tabelaAnimais">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Raça</th>
+                    <th>ID Cliente</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pet Shop</p>
+    </footer>
+</body>
+</html>
