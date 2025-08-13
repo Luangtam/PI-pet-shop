@@ -3,48 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Agendamento de Serviços</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Agendamento de Serviços</h1>
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="clientes.html">Clientes</a>
-            <a href="animais.html">Animais</a>
-        </nav>
-    </header>
+<header>
+    <h1>Agendamento de Serviços</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Dashboard</a>
+        <a href="{{ url_for('clientes') }}">Clientes</a>
+        <a href="{{ url_for('animais') }}">Animais</a>
+    </nav>
+</header>
 
-    <main>
-        <form id="formAgendamento">
-            <label for="idAnimalAg">ID do Animal:</label>
-            <input type="number" id="idAnimalAg" required>
+<main>
+    <form method="POST">
+        <label for="id_animal">Animal:</label>
+        <select name="id_animal" required>
+            {% for animal in animais %}
+            <option value="{{ animal.id_animal }}">{{ animal.nome }}</option>
+            {% endfor %}
+        </select>
 
-            <label for="servico">Serviço:</label>
-            <input type="text" id="servico" required>
+        <label for="servico">Serviço:</label>
+        <input type="text" name="servico" required>
 
-            <label for="dataAg">Data:</label>
-            <input type="date" id="dataAg" required>
+        <label for="data">Data:</label>
+        <input type="date" name="data" required>
 
-            <button type="submit">Agendar</button>
-        </form>
+        <button type="submit">Agendar</button>
+    </form>
 
-        <h3>Lista de Agendamentos</h3>
-        <table id="tabelaAgendamentos">
-            <thead>
-                <tr>
-                    <th>ID Animal</th>
-                    <th>Serviço</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Pet Shop</p>
-    </footer>
+    <h3>Lista de Agendamentos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Animal</th>
+                <th>Serviço</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ag in agendamentos %}
+            <tr>
+                <td>{{ ag.id_animal }}</td>
+                <td>{{ ag.servico }}</td>
+                <td>{{ ag.data }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 </body>
 </html>

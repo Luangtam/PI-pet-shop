@@ -3,52 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Animais</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Cadastro de Animais</h1>
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="clientes.html">Clientes</a>
-            <a href="agendamentos.html">Agendamentos</a>
-        </nav>
-    </header>
+<header>
+    <h1>Cadastro de Animais</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Dashboard</a>
+        <a href="{{ url_for('clientes') }}">Clientes</a>
+        <a href="{{ url_for('agendamentos') }}">Agendamentos</a>
+    </nav>
+</header>
 
-    <main>
-        <form id="formAnimal">
-            <label for="nomeAnimal">Nome do Animal:</label>
-            <input type="text" id="nomeAnimal" required>
+<main>
+    <form method="POST">
+        <label for="nome">Nome do Animal:</label>
+        <input type="text" name="nome" required>
 
-            <label for="tipoAnimal">Tipo:</label>
-            <input type="text" id="tipoAnimal" required>
+        <label for="tipo">Tipo:</label>
+        <input type="text" name="tipo">
 
-            <label for="raca">Raça:</label>
-            <input type="text" id="raca" required>
+        <label for="raca">Raça:</label>
+        <input type="text" name="raca">
 
-            <label for="idCliente">ID do Dono:</label>
-            <input type="number" id="idCliente" required>
+        <label for="id_cliente">ID do Dono:</label>
+        <select name="id_cliente" required>
+            {% for cliente in clientes %}
+            <option value="{{ cliente.id_cliente }}">{{ cliente.nome }}</option>
+            {% endfor %}
+        </select>
 
-            <button type="submit">Cadastrar</button>
-        </form>
+        <button type="submit">Cadastrar</button>
+    </form>
 
-        <h3>Lista de Animais</h3>
-        <table id="tabelaAnimais">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Raça</th>
-                    <th>ID Cliente</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Pet Shop</p>
-    </footer>
+    <h3>Lista de Animais</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Raça</th>
+                <th>Dono</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in animais %}
+            <tr>
+                <td>{{ animal.nome }}</td>
+                <td>{{ animal.tipo }}</td>
+                <td>{{ animal.raca }}</td>
+                <td>{{ animal.id_cliente }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
