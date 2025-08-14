@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Professores</title>
+</head>
+<body>
+    <h1>Lista de Professores</h1>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Formação</th>
+        </tr>
+        {% for tel in telefones %}
+        <tr>
+            <td>{{ tel.nome }}</td>
+            <td>{{ tel.formacao }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
